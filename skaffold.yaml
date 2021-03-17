@@ -1,0 +1,60 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false
+  # googleCloudBuild:
+  #   projectId: round-office-294221
+  artifacts:
+    - image: vksawe/auth
+      context: auth
+      docker:
+        dockerfile: DockerFile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: vksawe/client
+      context: client
+      docker:
+        dockerfile: DockerFile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+    - image: vksawe/tickets
+      context: tickets
+      docker:
+        dockerfile: DockerFile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: vksawe/orders
+      context: orders
+      docker:
+        dockerfile: DockerFile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: vksawe/expiration
+      context: expiration
+      docker:
+        dockerfile: DockerFile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: vksawe/payments
+      context: payments
+      docker:
+        dockerfile: DockerFile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
