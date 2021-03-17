@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node-dev src/index.ts",
     "test": "set NODE_ENV=test && jest --watchAll --no-cache ",
-    "test:ci":"jest"
+    "test:ci":"jest --forceExit --detectOpenHandles --maxWorkers=10"
   },
   "jest": {
     "preset": "ts-jest",
