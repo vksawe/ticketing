@@ -7,7 +7,6 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
-    - host: vksawe-ticketing-app.xyz
     - host: www.vksawe-ticketing-app.xyz
       http:
         paths:
